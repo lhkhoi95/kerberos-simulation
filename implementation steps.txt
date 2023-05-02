@@ -1,0 +1,29 @@
+1. User authentication: The user logs in with their credentials (username and password) to their local workstation or client device.
+
+2. Request for a Ticket Granting Ticket (TGT): The client sends a request to the Kerberos authentication server, 
+known as the Key Distribution Center (KDC), for a TGT.
+
+3. TGT generation: The KDC checks the user's credentials against its database and if the credentials are valid, 
+generates a TGT for the user. The TGT is encrypted with a secret key that is shared between the KDC and the client device.
+
+4. TGT transmission: The KDC sends the encrypted TGT back to the client device.
+
+5. TGT decryption: The client device decrypts the TGT using the shared secret key.
+
+6.TGT storage: The TGT is stored in the client device's memory and is used to request service tickets from 
+the KDC without prompting the user for their password again.
+
+7. Service ticket request: When the user wants to access a specific network resource, such as a file server, 
+the client sends a request to the KDC for a service ticket.
+
+8. Service ticket generation: The KDC generates a service ticket, which is encrypted with a secret key that 
+is shared between the KDC and the resource server.
+
+9. Service ticket transmission: The KDC sends the encrypted service ticket back to the client device.
+
+10. Service ticket decryption: The client device decrypts the service ticket using the TGT stored in its memory.
+
+11. Service ticket transmission to the server: The client device sends the decrypted service ticket to the resource server.
+
+12. Service ticket validation: The resource server validates the service ticket by decrypting it using its shared secret key with the KDC. 
+If the ticket is valid, the resource server grants the user access to the requested resource.
