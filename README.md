@@ -22,6 +22,8 @@ To find the IP address on Windows:
 ### 3: Run the code in VScode
 
 - Open two terminals, one for the client and one for the server. Arrange them side by side.
+- cd into the kerberos folder:
+   cd kerberos
 - In the server terminal, run the server by typing:
   python server.py
 - In the client terminal, run the client by typing:
