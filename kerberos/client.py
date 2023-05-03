@@ -93,7 +93,7 @@ class Client:
         self.verify_data_integrity(received_nonce)
 
     def request_service(self, service_id):
-        print('--- request_service function is called---')
+        print('--- \nrequest_service function is called---')
         # Client update nonce
         self.nonce = self.nonce + 1
         service_ticket = self.Kcs_enc_Kts + ':' + \

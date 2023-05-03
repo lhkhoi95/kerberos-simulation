@@ -1,6 +1,5 @@
 # server.py
 import socket
-import time
 import helpers
 import string
 import random
@@ -150,12 +149,12 @@ class Server:
         print(f'Service server received: {received_data} from client.')
         return received_data
 
-    def auth_server_Kcs(self, encrypted_data):
+    def application_server(self, encrypted_data):
         global nonce
-        print('--- auth_server_Kcs function is called---')
+        print('--- application_server function is called---')
         decrypted_data = helpers.decrypt(encrypted_data, session_keys['Kcs'])
         print(
-            f'Service server is decrypting data from client...Got: {decrypted_data}')
+            f'Application server is decrypting data from client...Got: {decrypted_data}')
         arrs = decrypted_data.split(
             ":")
         Kcs_enc_Kts = arrs[0]
@@ -179,9 +178,6 @@ class Server:
             print('Kcs is invalid! User is not authenticated!')
             message = 'You are not authenticated! You cannot use the requested service!'
             self.client_socket.sendall(message.encode('utf-8'))
-
-    def finalauthClientKcs(self, client):
-        self.fnonce2 = client.nonce2 + 1
 
     def verify_nonce_freshness(self, new_nonce):
         global nonce
@@ -218,7 +214,7 @@ def main():
 
         # accept the service request and authenticate the server
         received_data = server.accept_service_request()
-        server.auth_server_Kcs(received_data)
+        server.application_server(received_data)
 
     # close the connection with the server
     server.close_connection()

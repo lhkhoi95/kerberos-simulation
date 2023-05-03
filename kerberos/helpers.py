@@ -37,8 +37,18 @@ def decrypt(ciphertext, key):
     return plaintext
 
 
+def hash_password(password):
+    # Convert the password to bytes
+    password_bytes = password.encode('utf-8')
+
+    # Hash the password using SHA-256
+    hashed_password = hashlib.sha256(password_bytes).hexdigest()
+
+    return hashed_password
+
+
 def request_animation(is_forwarding):
-    input("Press Enter to send request...")
+    input("Press Enter to send...")
     str = '###'
     if not is_forwarding:
         str = '<=== ' + str
@@ -50,13 +60,3 @@ def request_animation(is_forwarding):
     if is_forwarding:
         print('===>', end=' ')
     print('\n')
-
-
-def hash_password(password):
-    # Convert the password to bytes
-    password_bytes = password.encode('utf-8')
-
-    # Hash the password using SHA-256
-    hashed_password = hashlib.sha256(password_bytes).hexdigest()
-
-    return hashed_password
